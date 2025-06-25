@@ -1,0 +1,71 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+body {
+  @apply bg-black text-white;
+  background-image: url('/fitfreak-bg.jpg'); 
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.btn-orange {
+  @apply bg-orange-500 text-black px-4 py-2 rounded hover:scale-105 transition;
+}
+.btn-sm {
+  @apply bg-orange-500 text-black px-2 py-1 rounded text-sm hover:scale-105;
+}
+.glass-card {
+  @apply bg-[#111]/50 backdrop-blur-md border border-orange-500 rounded p-6;
+}
+.ring-card {
+  @apply w-24 h-24 bg-[#111]/50 backdrop-blur-sm rounded p-4 flex flex-col items-center justify-center animate-fadeIn;
+}
+.progress-bar {
+  @apply bg-gray-700 rounded h-2;
+}
+.progress-bar > div {
+  @apply bg-orange-500 h-full rounded;
+}
+.badge {
+  @apply px-3 py-1 rounded-full border flex items-center transition;
+}
+.badge.earned {
+  @apply bg-green-600 border-green-400 text-white;
+}
+.badge.locked {
+  @apply bg-gray-800 border-gray-600 text-gray-400;
+}
+
+/* --- Calendar Dark Theme Styles --- */
+.react-calendar {
+  background-color: #111;
+  color: #f3f3f3;
+  border: 1px solid #ff6a00;
+  border-radius: 8px;
+  padding: 10px;
+}
+
+.react-calendar__tile {
+  background: transparent;
+  color: #fff;
+  border-radius: 6px;
+  padding: 0.75rem 0;
+  transition: 0.3s ease;
+}
+
+.react-calendar__tile--active {
+  background-color: #ff6a00;
+  color: black;
+}
+
+.react-calendar__tile:hover {
+  background-color: rgba(255, 106, 0, 0.2);
+  cursor: pointer;
+}
+
+.react-calendar__navigation button {
+  color: #ff6a00;
+  background-color: transparent;
+  font-weight: bold;
+}
