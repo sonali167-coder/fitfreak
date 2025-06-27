@@ -1,26 +1,25 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { toast } from "react-toastify";
+import { useAuth } from "../context/AuthContext"; 
 
 const Navbar = () => {
   const navigate = useNavigate();
-  const [user, setUser] = useState(null);
+  const { user, logout } = useAuth(); 
   const [showDropdown, setShowDropdown] = useState(false);
 
-  useEffect(() => {
-    const storedUser = JSON.parse(localStorage.getItem("fitfreakUser"));
-    setUser(storedUser);
-  }, []);
-
   const handleLogout = () => {
-    localStorage.removeItem("fitfreakUser");
+    logout(); 
     toast.success("Logged out successfully!");
     navigate("/login");
   };
 
   return (
     <nav className="backdrop-blur-lg bg-black/70 text-white py-3 px-6 flex justify-between items-center border-b border-orange-500 shadow-md z-50">
-      <h1 className="text-3xl font-extrabold text-orange-500 tracking-wide drop-shadow-[0_0_8px_#ff6a00] hover:scale-105 transition cursor-pointer">
+      <h1
+        className="text-3xl font-extrabold text-orange-500 tracking-wide drop-shadow-[0_0_8px_#ff6a00] hover:scale-105 transition cursor-pointer"
+        onClick={() => navigate("/")}
+      >
         FitFreak
       </h1>
 
@@ -69,11 +68,13 @@ const Navbar = () => {
               onMouseLeave={() => setShowDropdown(false)}
             >
               <img
-                src={user.image || `https://ui-avatars.com/api/?name=${user.name}&background=ff6a00&color=fff`}
+                src={
+                  user.image ||
+                  `https://ui-avatars.com/api/?name=${user.name}&background=ff6a00&color=fff`
+                }
                 alt="avatar"
                 className="w-9 h-9 rounded-full border-2 border-orange-500 cursor-pointer shadow-[0_0_5px_#ff6a00] object-cover"
               />
-
 
               {showDropdown && (
                 <div className="absolute right-0 mt-2 w-48 bg-black/90 text-white rounded-xl border border-orange-500 shadow-lg backdrop-blur-lg z-50 animate-fadeIn">

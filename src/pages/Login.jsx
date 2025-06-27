@@ -2,11 +2,13 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { FiEye, FiEyeOff } from "react-icons/fi";
+import { useAuth } from "../context/AuthContext"; 
 
 const Login = () => {
   const [form, setForm] = useState({ email: "", password: "" });
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
+  const { setUser, setPreferences } = useAuth(); 
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -30,6 +32,12 @@ const Login = () => {
       form.password === savedUser.password
     ) {
       toast.success("Login successful!");
+
+
+      setUser(savedUser);
+      const prefs = JSON.parse(localStorage.getItem("fitfreakPrefs"));
+      setPreferences(prefs || {});
+
       navigate("/home");
     } else {
       toast.error("Invalid credentials.");
